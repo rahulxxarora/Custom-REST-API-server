@@ -24,7 +24,8 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		def wrapper(self):
 			_args = re.findall(r'/\w+', self.path)
 
-			print self.path
+			if self.path == '/':
+				return 'Welcome to our online store. Visit /products for more (with proper Auth headers and all, obviously)'
 
 			if _args[0][1:] == 'user':
 				return f(self)
@@ -38,7 +39,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 						self.wfile.write(bytes(json.dumps({'msg':'Unauthorized request'})))
 			except:
 				self._set_headers(400)
-				self.wfile.write(bytes(json.dumps({'msg':'Invalid request'})))
+				self.wfile.write(bytes(json.dumps({'msg':'Invalid header'})))
 		
 		return wrapper
 
