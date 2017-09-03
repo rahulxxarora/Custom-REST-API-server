@@ -19,10 +19,12 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		self.send_response(response_code)
 		self.send_header('Content-type', 'application/json')
 		self.end_headers()
-	
+
 	def auth(f):
 		def wrapper(self):
 			_args = re.findall(r'/\w+', self.path)
+
+			print self.path
 
 			if _args[0][1:] == 'user':
 				return f(self)
