@@ -58,7 +58,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         _args = re.findall(r'/\w+', self.path)
 
         if len(_args) == 0 or len(_args) > 2 or _args[0] != '/products':
-            data = json.dumps({'msg': 'Invalid request'})
+            data = json.dumps({'msg': 'Invalid endpoint'})
             self._set_headers(400)
         elif len(_args) == 1:
             # List all items
@@ -83,7 +83,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if len(_args) != 1 or (_args[0] != '/user' and _args[0] != '/products'):
             self._set_headers(400)
-            data = json.dumps({'msg': 'Invalid request'})
+            data = json.dumps({'msg': 'Invalid endpoint'})
         elif _args[0] == '/user':
             try:
                 user = req_data['user']
@@ -111,7 +111,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if len(_args) != 1 or _args[0] != '/products':
             self._set_headers(400)
-            data = json.dumps({'msg': 'Invalid request'})
+            data = json.dumps({'msg': 'Invalid endpoint'})
         else:
             try:
                 TemporaryDatabase.items[req_data['id']] = req_data
