@@ -105,6 +105,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     @auth
     def do_PUT(self):
+        _args = re.findall(r'/\w+', self.path)
         content_length = int(self.headers['Content-Length'])
         req_data = json.loads(self.rfile.read(content_length))
 
