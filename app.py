@@ -127,7 +127,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_DELETE(self):
         _args = re.findall(r'/\w+', self.path)
 
-        if len(_args) == 0 or len(_args) > 2 or _args[0] != '/delete':
+        if len(_args) !=1 or _args[0] != '/products':
             data = json.dumps({'msg': 'Invalid endpoint'})
             self._set_headers(400)
         else:
