@@ -31,9 +31,10 @@ API Docs
 @api {get} /products
 
 @apiOutput 
-		   {200} JSON Data
 
-		   {404} Item not found, Invalid endpoint
+{200} JSON Data
+
+{404} Item not found, Invalid endpoint
 
 Example:
 
@@ -46,9 +47,10 @@ $ curl -H 'Authorization: Basic cm9vdDpwd2Q=' -H 'user: root' https://gentle-cli
 @api {get} /products/product:ID
 
 @apiOutput 
-		   {200} JSON Data
 
-		   {404} Item not found, Invalid endpoint
+{200} JSON Data
+
+{404} Item not found, Invalid endpoint
 
 Example:
 
@@ -63,11 +65,12 @@ $ curl -H 'Authorization: Basic cm9vdDpwd2Q=' -H 'user: root' https://gentle-cli
 @apiParam {String, String} user and pwd
 
 @apiOutput 
-		   {201} AuthToken
 
-		   {400} Invalid JSON data
+{201} AuthToken
 
-		   {404} Invalid endpoint
+{400} Invalid JSON data
+
+{404} Invalid endpoint
 
 Example:
 
@@ -82,11 +85,12 @@ $ curl -d '{"user":"test", "pwd":"test"}' https://gentle-cliffs-92685.herokuapp.
 @apiParam {String, String, String} id, seller and price
 
 @apiOutput 
-		   {201} Item stored in the database
 
-		   {400} Invalid JSON data
+{201} Item stored in the database
 
-		   {404} Invalid endpoint
+{400} Invalid JSON data
+
+{404} Invalid endpoint
 
 Example:
 
@@ -101,11 +105,12 @@ $ curl -H 'Authorization: Basic cm9vdDpwd2Q=' -H 'user: root' -d '{"id":"bar", "
 @apiParam {String, String, String} id, seller and price
 
 @apiOutput 
-		   {200} Item updated in the database
 
-		   {400} Invalid JSON data
+{200} Item updated in the database
 
-		   {404} Invalid endpoint
+{400} Invalid JSON data
+
+{404} Invalid endpoint
 
 Example:
 
@@ -118,9 +123,10 @@ $ curl -X PUT -H 'Authorization: Basic cm9vdDpwd2Q=' -H 'user: root' -d '{"id":"
 @api {delete} /products/product:ID
 
 @apiOutput 
-		   {200} Item deleted successfully
 
-		   {404} Item not found, Invalid endpoint
+{200} Item deleted successfully
+
+{404} Item not found, Invalid endpoint
 
 Example:
 
