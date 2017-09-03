@@ -81,7 +81,7 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         req_data = json.loads(self.rfile.read(content_length))
 
-        if len(_args) != 1:
+        if len(_args) != 1 or _args[0] != '/user' or _args[0] != '/products':
             data = json.dumps({'msg': 'Invalid request'})
             self._set_headers(400)
         elif _args[0] == '/user':
