@@ -38,7 +38,7 @@ $ curl -H 'Authorization: Basic cm9vdDpwd2Q=' -H 'user: root' https://gentle-cli
 
 ### Fetching a particular product
 
-@api {get} /products/<product ID>
+@api {get} /products/product:ID
 
 Example:
 
@@ -86,7 +86,7 @@ $ curl -X PUT -H 'Authorization: Basic cm9vdDpwd2Q=' -H 'user: root' -d '{"id":"
 
 ### Deleting a product
 
-@api {delete} /products/<product ID>
+@api {delete} /products/product:ID
 
 Example:
 
