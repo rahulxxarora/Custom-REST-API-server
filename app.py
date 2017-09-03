@@ -108,13 +108,18 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         req_data = json.loads(self.rfile.read(content_length))
 
-        TemporaryDatabase.items[req_data['id']] = req_data
+        if len(_args) != 1 or _args[0] != '/products':
+            self._set_headers(400)
+            data = json.dumps({'msg': 'Invalid request'})
+        try:
+            TemporaryDatabase.items[req_data['id']] = req_data
+            self._set_headers(200)
+            data = json.dumps({'msg': 'Item updated in the database'})
+        except:
+            self._set_headers(400)
+            data = json.dumps({'msg': 'Invalid JSON data'})
 
-        self._set_headers(200)
-        self.wfile.write(
-            bytes(json.dumps({
-                'msg': 'Item updated in the database'
-            })))
+        self.wfile.write(bytes(data))
 
     @auth
     def do_DELETE(self):
