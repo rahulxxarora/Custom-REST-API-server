@@ -112,13 +112,14 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         if len(_args) != 1 or _args[0] != '/products':
             self._set_headers(400)
             data = json.dumps({'msg': 'Invalid request'})
-        try:
-            TemporaryDatabase.items[req_data['id']] = req_data
-            self._set_headers(200)
-            data = json.dumps({'msg': 'Item updated in the database'})
-        except:
-            self._set_headers(400)
-            data = json.dumps({'msg': 'Invalid JSON data'})
+        else:
+            try:
+                TemporaryDatabase.items[req_data['id']] = req_data
+                self._set_headers(200)
+                data = json.dumps({'msg': 'Item updated in the database'})
+            except:
+                self._set_headers(400)
+                data = json.dumps({'msg': 'Invalid JSON data'})
 
         self.wfile.write(bytes(data))
 
