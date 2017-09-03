@@ -25,7 +25,8 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 			_args = re.findall(r'/\w+', self.path)
 
 			if self.path == '/':
-				return 'Welcome to our online store. Visit /products for more (with proper Auth headers and all, obviously)'
+				self._set_headers(200)
+				self.wfile.write(bytes(json.dumps({'msg':'Visit /products for more (with proper Auth headers and all, obviously)'})))
 
 			if _args[0][1:] == 'user':
 				return f(self)
