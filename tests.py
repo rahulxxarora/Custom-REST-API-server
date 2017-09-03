@@ -44,7 +44,7 @@ class APITestSuit(unittest.TestCase):
     def test_get_invalid_url(self):
         response = requests.get('http://127.0.0.1:8000/products/test/test1',
                                 headers=headers)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
         self.assertEqual(json.loads(response.text), {'msg': 'Invalid endpoint'})
 
     def test_post_product(self):
@@ -85,7 +85,7 @@ class APITestSuit(unittest.TestCase):
     def test_delete_invalid_url(self):
         response = requests.delete(
             'http://127.0.0.1:8000/products/test/test1', headers=headers)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
         self.assertEqual(
             json.loads(response.text), {'msg': 'Invalid endpoint'})
 
