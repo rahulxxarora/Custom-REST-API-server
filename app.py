@@ -82,22 +82,25 @@ class SimpleRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         req_data = json.loads(self.rfile.read(content_length))
 
         if len(_args) != 1 or (_args[0] != '/user' and _args[0] != '/products'):
-            data = json.dumps({'msg': 'Invalid request'})
             self._set_headers(400)
+            data = json.dumps({'msg': 'Invalid request'})
         elif _args[0] == '/user':
-            user = req_data['user']
-            pwd = req_data['pwd']
-            key = user + ':' + pwd
-            auth_token = base64.b64encode(key.encode('utf-8'))
+            try:
+                user = req_data['user']
+                pwd = req_data['pwd']
+                key = user + ':' + pwd
+                auth_token = base64.b64encode(key.encode('utf-8'))
 
-            TemporaryDatabase.users[user] = auth_token
-
-            data = json.dumps({'Auth Token': auth_token})
+                TemporaryDatabase.users[user] = auth_token
+                data = json.dumps({'Auth Token': auth_token})
+            except:
+                self._set_headers(400)
+                data = json.dumps({'msg': 'Invalid JSON data'})
         elif _args[0] == '/products':
             TemporaryDatabase.items[req_data['id']] = req_data
+            self._set_headers(201)
             data = json.dumps({'msg': 'Item stored in the database'})
 
-        self._set_headers(201)
         self.wfile.write(bytes(data))
 
     @auth
