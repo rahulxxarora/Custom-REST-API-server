@@ -26,9 +26,9 @@ python app.py
 API Docs
 --------
 
-### Fetching all products
-
 ## NOTE : All the API calls except the post request on /user require an Basic Authorization and the Username header. Look at the examples for more.
+
+### Fetching all products
 
 @api {get} /products
 
